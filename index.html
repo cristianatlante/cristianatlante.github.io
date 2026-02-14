@@ -12,10 +12,16 @@
       margin: 0;
       padding: 0;
     }
-    #comic img {
+    #comic {
+      position: relative;
+      height: auto;
+    }
+    #mainImage {
       max-width: 90%;
       margin: 20px 0;
       box-shadow: 0 0 10px #000;
+      transition: opacity 0.5s ease-in-out;
+      opacity: 1;
     }
     .nav-buttons {
       margin: 10px;
@@ -44,6 +50,10 @@
       margin: 5px;
       cursor: pointer;
       border: 2px solid #111;
+      transition: transform 0.2s;
+    }
+    .thumbnails img:hover {
+      transform: scale(1.1);
     }
     .thumbnails img.active {
       border-color: #f00;
@@ -83,7 +93,15 @@
 
     function showPage(page){
       if(page < 0 || page >= totalPages) return;
-      mainImage.src = `torneo de luchitas 2006/${page.toString().padStart(2,'0')}.jpg`;
+
+      // Efecto fade
+      mainImage.style.opacity = 0;
+      setTimeout(() => {
+        mainImage.src = `torneo de luchitas 2006/${page.toString().padStart(2,'0')}.jpg`;
+        mainImage.alt = `Página ${page.toString().padStart(2,'0')}`;
+        mainImage.style.opacity = 1;
+      }, 300);
+
       document.querySelectorAll('.thumbnails img').forEach(img => img.classList.remove('active'));
       document.querySelectorAll('.thumbnails img')[page].classList.add('active');
       currentPage = page;
