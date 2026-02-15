@@ -1,189 +1,54 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Ander 4 Eber - Comic 1</title>
-  <style>
-    body {
-      background-color: #111;
-      color: #fff;
-      text-align: center;
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    #comic {
-      position: relative;
-      height: auto;
-    }
-    #mainImage {
-      max-width: 90%;
-      margin: 20px 0;
-      box-shadow: 0 0 10px #000;
-      transition: opacity 0.5s ease-in-out;
-      opacity: 1;
-    }
-    .nav-buttons {
-      margin: 10px;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin: 5px;
-      cursor: pointer;
-      background-color: #222;
-      color: #fff;
-      border: 1px solid #555;
-      border-radius: 5px;
-    }
-    button:hover {
-      background-color: #444;
-    }
-    .thumbnails {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin: 20px;
-    }
-    .thumbnails img {
-      width: 80px;
-      margin: 5px;
-      cursor: pointer;
-      border: 2px solid #111;
-      transition: transform 0.2s;
-    }
-    .thumbnails img:hover {
-      transform: scale(1.1);
-    }
-    .thumbnails img.active {
-      border-color: #f00;
-    }
-    audio {
-      margin-top: 10px;
-      width: 90%;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Ander 4 Eber</title>
+<style>
+body {
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-top: 100px;
+}
+
+h1 {
+    font-size: 50px;
+    margin-bottom: 60px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+
+.boton {
+    background-color: white;
+    color: black;
+    padding: 20px 40px;
+    text-decoration: none;
+    font-size: 22px;
+    width: 300px;
+    transition: 0.3s;
+}
+
+.boton:hover {
+    background-color: red;
+    color: white;
+}
+</style>
 </head>
 <body>
-  <h1>Ander 4 Eber - Comic 1</h1>
 
-  <!-- Reproductor de música -->
-  <audio id="music" autoplay>
-    <source src="musica/opening.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio.
-  </audio>
+<h1>ANDER 4 EBER</h1>
 
-  <div id="comic">
-    <img id="mainImage" src="torneo de luchitas 2006/00.jpg" alt="Página 00">
-  </div>
+<div class="menu">
+    <a class="boton" href="torneo de luchitas 2006/index.html">Torneo de Luchitas 2006</a>
+    <a class="boton" href="comic2.html">Comic Nº 2</a>
+</div>
 
-  <div class="nav-buttons">
-    <button onclick="prevPage()">Anterior</button>
-    <button onclick="nextPage()">Siguiente</button>
-  </div>
-
-  <div class="thumbnails" id="thumbs"></div>
-
-  <script>
-    const totalPages = 30; // páginas 00 a 29
-    let currentPage = 0;
-
-    const mainImage = document.getElementById('mainImage');
-    const thumbs = document.getElementById('thumbs');
-    const music = document.getElementById('music');
-
-    // Lista de canciones secuenciales (para cuando no hay cambio de página)
-    const playlist = [
-      'musica/opening.mp3',
-      'musica/beachgnomes.mp3',
-      'musica/bestplay.mp3',
-      'musica/epicmedieval.mp3',
-      'musica/hammersong.mp3',
-      'musica/streetcaritaslofi.mp3',
-      'musica/tension.mp3',
-      'musica/watashisinvoces.mp3',
-      'musica/watashitranka.mp3'
-    ];
-    let currentTrack = 0;
-
-    music.addEventListener('ended', () => {
-      currentTrack = (currentTrack + 1) % playlist.length;
-      music.src = playlist[currentTrack];
-      music.play();
-    });
-
-    // Música específica por página según tu lista
-    const pageMusic = {
-      0: 'musica/opening.mp3',
-      1: 'musica/opening.mp3',
-      2: 'musica/bestplay.mp3',
-      3: 'musica/bestplay.mp3',
-      4: 'musica/bestplay.mp3',
-      5: 'musica/bestplay.mp3',
-      6: 'musica/beachgnomes.mp3',
-      7: 'musica/beachgnomes.mp3',
-      8: 'musica/beachgnomes.mp3',
-      9: 'musica/beachgnomes.mp3',
-      10:'musica/beachgnomes.mp3',
-      11:'musica/epicmedieval.mp3',
-      12:'musica/beachgnomes.mp3',
-      13:'musica/beachgnomes.mp3',
-      14:'musica/tension.mp3',
-      15:'musica/epicmedieval.mp3',
-      16:'musica/tension.mp3',
-      17:'musica/bestplay.mp3',
-      18:'musica/streetcaritaslofi.mp3',
-      19:'musica/streetcaritaslofi.mp3',
-      20:'musica/streetcaritaslofi.mp3',
-      21:'musica/epicmedieval.mp3',
-      22:'musica/tension.mp3',
-      23:'musica/bestplay.mp3',
-      24:'musica/epicmedieval.mp3',
-      25:'musica/hammersong.mp3',
-      26:'musica/hammersong.mp3',
-      27:'musica/hammersong.mp3',
-      28:'musica/watashisinvoces.mp3',
-      29:'musica/watashitranka.mp3'
-    };
-
-    // Crear miniaturas
-    for(let i=0;i<totalPages;i++){
-      const img = document.createElement('img');
-      img.src = `torneo de luchitas 2006/${i.toString().padStart(2,'0')}.jpg`;
-      img.alt = `Página ${i.toString().padStart(2,'0')}`;
-      img.onclick = () => { showPage(i); };
-      if(i===0) img.classList.add('active');
-      thumbs.appendChild(img);
-    }
-
-    function showPage(page){
-      if(page < 0 || page >= totalPages) return;
-
-      // Fade de la imagen
-      mainImage.style.opacity = 0;
-      setTimeout(()=>{
-        mainImage.src = `torneo de luchitas 2006/${page.toString().padStart(2,'0')}.jpg`;
-        mainImage.alt = `Página ${page.toString().padStart(2,'0')}`;
-        mainImage.style.opacity = 1;
-      }, 300);
-
-      // Cambiar música según página
-      if(pageMusic[page] && music.src.indexOf(pageMusic[page]) === -1){
-        music.src = pageMusic[page];
-        music.play();
-      }
-
-      // Miniaturas
-      document.querySelectorAll('.thumbnails img').forEach(img => img.classList.remove('active'));
-      document.querySelectorAll('.thumbnails img')[page].classList.add('active');
-
-      currentPage = page;
-    }
-
-    function nextPage(){ if(currentPage<totalPages-1) showPage(currentPage+1); }
-    function prevPage(){ if(currentPage>0) showPage(currentPage-1); }
-
-  </script>
 </body>
 </html>
-<a href="comic2.html">Leer Comic Nº2</a>
