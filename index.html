@@ -13,6 +13,27 @@ body {
     overflow-x: hidden;
 }
 
+/* 📼 Pantalla VHS */
+.vhs-loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    z-index: 9999;
+    animation: apagar 2.5s forwards;
+}
+
+@keyframes apagar {
+    0% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
+}
+
 /* 🎬 Fondo cinematográfico */
 body::before {
     content: "";
@@ -45,14 +66,23 @@ body::after {
     margin-top: 80px;
     margin-bottom: 40px;
     animation: flotar 4s ease-in-out infinite;
-    filter: drop-shadow(0 0 25px rgba(255,255,255,0.5))
-            drop-shadow(0 0 35px rgba(255,0,0,0.6));
+    filter: drop-shadow(0 0 35px rgba(255,255,255,0.8))
+            drop-shadow(0 0 55px rgba(255,0,0,0.7));
 }
 
 @keyframes flotar {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
     100% { transform: translateY(0px); }
+}
+
+/* ⚡ Glitch */
+.glitch { animation: glitch 0.3s; }
+@keyframes glitch {
+    20% { transform: translate(-3px,2px); }
+    40% { transform: translate(3px,-2px); }
+    60% { transform: translate(-2px,1px); }
+    80% { transform: translate(2px,-1px); }
 }
 
 /* 📺 Menú */
@@ -76,9 +106,7 @@ body::after {
     transition: 0.3s;
 }
 
-.boton:hover {
-    background: red;
-}
+.boton:hover { background: red; }
 
 /* 🌭 Botón apoyo */
 .apoyo {
@@ -108,6 +136,8 @@ body::after {
 
 <body>
 
+<div class="vhs-loader">📼 PLAY</div>
+
 <div class="logo">
     <img src="logo.png" alt="Ander 4 Eber">
 </div>
@@ -120,24 +150,35 @@ body::after {
 </div>
 
 <div class="footer">
-    <a href="https://instagram.com/comoqueno" target="_blank">📸 Instagram</a>
+    <a href="https://instagram.com/ander4eber" target="_blank">📸 Instagram</a>
     <a href="mailto:cristianatlante@gmail.com">✉️ Mail</a>
     <a href="https://wa.me/542235127083" target="_blank">📱 WhatsApp</a>
 </div>
 
-<!-- 📼 Sonido VHS -->
-<audio autoplay>
+<audio id="vhsSound">
     <source src="https://archive.org/download/vhs-startup/VHS%20Startup.mp3" type="audio/mp3">
 </audio>
 
 <script>
-/* 🎬 Movimiento leve del fondo con mouse */
+/* 🎬 Movimiento fondo real */
 document.addEventListener("mousemove", e => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 10;
-    const y = (e.clientY / window.innerHeight - 0.5) * 10;
-    document.body.style.setProperty("--x", x + "px");
-    document.body.style.setProperty("--y", y + "px");
-    document.querySelector("body::before");
+    const x = (e.clientX / window.innerWidth - 0.5) * 15;
+    const y = (e.clientY / window.innerHeight - 0.5) * 15;
+    document.body.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+/* ⚡ Glitch ocasional */
+setInterval(() => {
+    const logo = document.querySelector(".logo img");
+    logo.classList.add("glitch");
+    setTimeout(() => logo.classList.remove("glitch"), 300);
+}, 6000 + Math.random()*5000);
+
+/* 📼 Sonido en cada click */
+document.addEventListener("click", () => {
+    const sonido = document.getElementById("vhsSound");
+    sonido.currentTime = 0;
+    sonido.play();
 });
 </script>
 
