@@ -1,3 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Apoya Ander 4 Eber</title>
+
+<style>
+body {
+    margin: 0;
+    color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* 🎬 Fondo cinematográfico */
+body::before {
+    content: "";
+    position: fixed;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    background: url("casa.jpg") center/cover no-repeat;
+    filter: blur(6px) brightness(0.35);
+    z-index: -2;
+}
+
+/* 📺 Ruido VHS */
+body::after {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.15;
+    z-index: -1;
+}
+
+/* 🌭 Caja apoyo */
+.apoyo-box {
+    max-width: 700px;
+    margin: 120px auto;
+    padding: 40px;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    border: 1px solid #444;
+}
+
+.apoyo-box h1 {
+    font-size: 38px;
+    margin-bottom: 20px;
+}
+
+.apoyo-box h2 {
+    margin-top: 30px;
+    color: #ffcc00;
+}
+
+.alias {
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+/* 🎁 tiers */
+.tier {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #333;
+    transition: 0.3s;
+}
+
+.tier:hover {
+    border-color: red;
+    transform: scale(1.02);
+}
+
+/* QR glow */
+.qr-box {
+    margin-top: 30px;
+    padding: 20px;
+    display: inline-block;
+    background: rgba(0,0,0,0.8);
+    border: 1px solid #ffcc00;
+    box-shadow: 0 0 20px #ffcc00;
+}
+
+.qr-box img {
+    width: 200px;
+    height: 200px;
+}
+
+/* 🏠 Botón volver al menú */
+.volver {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 12px 25px;
+    background: rgba(255,255,255,0.1);
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid #ffcc00;
+    transition: 0.3s;
+}
+
+.volver:hover {
+    background: #ffcc00;
+    color: black;
+}
+</style>
+</head>
+<body>
+
 <div class="apoyo-box">
 
 <h1>APOYÁ ANDER 4 EBER</h1>
@@ -16,7 +129,7 @@ podés apoyar el cómic con una transferencia.
 <div class="tier">
 🌭 <b>$3000</b><br>
 Eber te agradece porque esta noche al menos comerá salchichas 
-(solitas pero salchichas en fin)
+(solitas pero salchichas al fin)
 </div>
 
 <div class="tier">
@@ -42,4 +155,14 @@ Enviá comprobante a:<br>
 Instagram: @ander4eber
 </p>
 
+<!-- QR -->
+<div class="qr-box">
+<img src="qr.jpg" alt="Cuenta DNI QR">
 </div>
+
+<a class="volver" href="index.html">⬅ Volver al menú</a>
+
+</div>
+
+</body>
+</html>
