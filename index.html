@@ -10,28 +10,49 @@ body {
     color: white;
     text-align: center;
     font-family: Arial, sans-serif;
+    overflow-x: hidden;
 }
 
 /* 🎬 Fondo cinematográfico */
 body::before {
     content: "";
     position: fixed;
-    top: 0;
-    left: 0;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    background: url("casa.jpg") center/cover no-repeat;
+    filter: blur(6px) brightness(0.35);
+    z-index: -2;
+    transition: transform 0.2s ease-out;
+}
+
+/* 📺 Ruido VHS */
+body::after {
+    content: "";
+    position: fixed;
     width: 100%;
     height: 100%;
-    background: url("casa.jpg") center/cover no-repeat;
-    filter: blur(6px) brightness(0.4);
+    background: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.15;
     z-index: -1;
 }
 
-/* ⭐ Logo */
+/* ⭐ Logo flotante */
 .logo img {
     width: 80%;
-    max-width: 380px;
+    max-width: 420px;
     margin-top: 80px;
     margin-bottom: 40px;
-    filter: drop-shadow(0 0 10px rgba(255,0,0,0.4));
+    animation: flotar 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 25px rgba(255,255,255,0.5))
+            drop-shadow(0 0 35px rgba(255,0,0,0.6));
+}
+
+@keyframes flotar {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
 }
 
 /* 📺 Menú */
@@ -44,12 +65,12 @@ body::before {
 
 /* 🎮 Botones capítulos */
 .boton {
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.75);
     color: white;
     padding: 20px 40px;
     text-decoration: none;
     font-size: 22px;
-    width: 300px;
+    width: 320px;
     border: 1px solid #444;
     backdrop-filter: blur(4px);
     transition: 0.3s;
@@ -70,19 +91,19 @@ body::before {
     font-weight: bold;
 }
 
-/* 📞 Footer contacto */
+/* 📞 Footer */
 .footer {
     margin-top: 80px;
     font-size: 14px;
-    opacity: 0.9;
 }
 
 .footer a {
     color: #ffcc00;
     text-decoration: none;
+    margin: 0 10px;
+    font-size: 18px;
 }
 </style>
-
 </head>
 
 <body>
@@ -92,17 +113,33 @@ body::before {
 </div>
 
 <div class="menu">
-    <a class="boton" href="torneo de luchitas 2006/index.html">Torneo de Luchitas 2006</a>
-    <a class="boton" href="comic2.html">Briss Xpress</a>
+    <a class="boton" href="torneo de luchitas 2006/index.html">1 — Torneo de Luchitas 2006</a>
+    <a class="boton" href="comic2.html">2 — Briss X-Press</a>
 
     <a class="apoyo" href="apoya.html">🌭 Invita una salchicha Wilson a Eber</a>
 </div>
 
 <div class="footer">
-    <p>Instagram: <a href="https://instagram.com/ander4eber" target="_blank">@ander4eber</a></p>
-    <p>Mail: <a href="mailto:cristianatlante@gmail.com">cristianatlante@gmail.com</a></p>
-    <p>WhatsApp: <a href="https://wa.me/542235127083" target="_blank">2235 127083</a></p>
+    <a href="https://instagram.com/comoqueno" target="_blank">📸 Instagram</a>
+    <a href="mailto:cristianatlante@gmail.com">✉️ Mail</a>
+    <a href="https://wa.me/542235127083" target="_blank">📱 WhatsApp</a>
 </div>
+
+<!-- 📼 Sonido VHS -->
+<audio autoplay>
+    <source src="https://archive.org/download/vhs-startup/VHS%20Startup.mp3" type="audio/mp3">
+</audio>
+
+<script>
+/* 🎬 Movimiento leve del fondo con mouse */
+document.addEventListener("mousemove", e => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 10;
+    const y = (e.clientY / window.innerHeight - 0.5) * 10;
+    document.body.style.setProperty("--x", x + "px");
+    document.body.style.setProperty("--y", y + "px");
+    document.querySelector("body::before");
+});
+</script>
 
 </body>
 </html>
