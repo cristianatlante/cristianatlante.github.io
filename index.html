@@ -3,66 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <title>Ander 4 Eber</title>
+
 <style>
 body {
-    background-color: black;
+    margin: 0;
     color: white;
     text-align: center;
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding-top: 100px;
+}
+
+/* 🎬 Fondo cinematográfico */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("casa.jpg") center/cover no-repeat;
+    filter: blur(6px) brightness(0.4);
+    z-index: -1;
 }
 
 h1 {
     font-size: 50px;
+    margin-top: 100px;
     margin-bottom: 60px;
 }
 
+/* 📺 Menú estilo VHS */
 .menu {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 25px;
     align-items: center;
 }
 
+/* 🎮 Botones capítulos */
 .boton {
-    background-color: white;
-    color: black;
+    background: rgba(0,0,0,0.7);
+    color: white;
     padding: 20px 40px;
     text-decoration: none;
     font-size: 22px;
     width: 300px;
+    border: 1px solid #444;
+    backdrop-filter: blur(4px);
     transition: 0.3s;
 }
 
 .boton:hover {
-    background-color: red;
-    color: white;
+    background: red;
 }
 
+/* 🌭 Botón apoyo */
 .apoyo {
-    margin-top: 50px;
+    margin-top: 30px;
+    background: #ffcc00;
+    color: black;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
 }
 
-.apoyo a {
-    background:#ffcc00;
-    color:#000;
-    padding:14px 22px;
-    text-decoration:none;
-    border-radius:10px;
-    font-weight:bold;
-    font-size:18px;
-    box-shadow:0 0 10px #ffcc00;
-    display:inline-block;
-}
-
-.apoyo p {
-    font-size:12px;
-    color:#aaa;
-    margin-top:10px;
+/* 📞 Footer contacto */
+.footer {
+    margin-top: 80px;
+    font-size: 14px;
+    opacity: 0.8;
 }
 </style>
 </head>
+
 <body>
 
 <h1>ANDER 4 EBER</h1>
@@ -70,11 +83,14 @@ h1 {
 <div class="menu">
     <a class="boton" href="torneo de luchitas 2006/index.html">Torneo de Luchitas 2006</a>
     <a class="boton" href="comic2.html">Briss Xpress</a>
+
+    <a class="apoyo" href="apoya.html">🌭 Invita una salchicha Wilson a Eber</a>
 </div>
 
-<div class="apoyo">
-    <a href="apoya.html">🌭 Invitá una salchicha Wilson a Eber</a>
-    <p>Tu aporte ayuda a financiar experimentos alquímicos y alimentación ansiosa.</p>
+<div class="footer">
+    <p>Contacto: tu_mail@mail.com</p>
+    <p>Instagram: @tu_usuario</p>
+    <p>WhatsApp: +54 9 ...</p>
 </div>
 
 </body>
